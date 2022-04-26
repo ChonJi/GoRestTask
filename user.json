@@ -1,6 +1,23 @@
 {
-  "name": "Conan Valid",
-  "gender": "male",
-  "email": "conan@nodomain.fake.pl",
-  "status": "inactive"
+  "scenarios": [
+    {
+      "scenario" : "valid",
+      "user": {
+        "name": "Conan Valid",
+        "gender": "male",
+        "email": "conan@nodomain.fake.pl",
+        "status": "inactive"
+      }
+    },
+    {
+      "scenario" : "invalid",
+      "user": {
+        "name": "no name",
+        "gender": "no gender",
+        "email": "no mail",
+        "status": "no status"
+      }
+    }
+  ]
 }
+

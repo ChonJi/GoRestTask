@@ -1,35 +1,33 @@
 package handlers;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONWrappedObject;
-import netscape.javascript.JSObject;
+import pojos.Scenarios;
 import pojos.User;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class UserHandler {
 
-    private static User user;
+    private ObjectMapper mapper = new ObjectMapper();
+    private Scenarios scenarios;
 
-    public static User readFromJsonFile() {
-        try  {
-            ObjectMapper mapper = new ObjectMapper();
-            user = mapper.readValue(new File("user.json"), User.class);
+    private Scenarios readFromJsonFile() {
+        try {
+            scenarios = mapper.readValue(new File("user.json"), Scenarios.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return user;
+        return scenarios;
     }
 
-    public static void main(String[] args) throws IOException {
+    public User getUserByScenario(final String scenario) throws Error {
+        scenarios = readFromJsonFile();
+        return scenarios.getScenarios().stream().filter(s -> s.getScenario().equals(scenario)).findFirst().get().getUser();
+    }
 
-        user = readFromJsonFile();
-        System.out.println(user.getName());
-
+    public String toJson(final Object object) throws JsonProcessingException {
+        return mapper.writeValueAsString(object);
     }
 }

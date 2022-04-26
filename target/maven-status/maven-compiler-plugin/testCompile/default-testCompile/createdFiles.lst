@@ -1,3 +1,6 @@
+tests\UserTest.class
 handlers\UserHandler.class
-pojos\Users.class
+pojos\Scenario.class
+tests\BaseTest.class
 pojos\User.class
+pojos\Scenarios.class
