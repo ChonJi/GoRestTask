@@ -15,7 +15,7 @@ public class UserHandler {
 
     private Scenarios readFromJsonFile() {
         try {
-            scenarios = mapper.readValue(new File("user.json"), Scenarios.class);
+            scenarios = mapper.readValue(new File("scenarios.json"), Scenarios.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -27,7 +27,13 @@ public class UserHandler {
         return scenarios.getScenarios().stream().filter(s -> s.getScenario().equals(scenario)).findFirst().get().getUser();
     }
 
-    public String toJson(final Object object) throws JsonProcessingException {
-        return mapper.writeValueAsString(object);
+    public String toJson(final User user)  {
+        var jsonString = "";
+        try {
+            jsonString = mapper.writeValueAsString(user);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return jsonString;
     }
 }

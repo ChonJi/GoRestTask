@@ -1,5 +1,6 @@
 tests\UserTest.class
 handlers\UserHandler.class
+tests\HealthCheckTest.class
 pojos\Scenario.class
 tests\BaseTest.class
 pojos\User.class

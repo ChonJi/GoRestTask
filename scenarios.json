@@ -1,6 +1,14 @@
 {
   "scenarios": [
     {
+      "scenario" : "no name user",
+      "user": {
+        "gender": "male",
+        "email": "conan@nodomain.fake.pl",
+        "status": "inactive"
+      }
+    },
+    {
       "scenario" : "valid",
       "user": {
         "name": "Conan Valid",
