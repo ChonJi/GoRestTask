@@ -3,4 +3,5 @@ handlers\UserHandler.class
 pojos\Scenario.class
 tests\BaseTest.class
 pojos\User.class
+handlers\ReadProperties.class
 pojos\Scenarios.class

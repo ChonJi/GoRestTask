@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class UserTest {
+public class UserTest extends BaseTest {
 
     @Test
     public void shouldPassOnConfigCheck() {
