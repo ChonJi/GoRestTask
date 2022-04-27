@@ -3,6 +3,7 @@ package pojos;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.util.List;
 import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -14,6 +15,7 @@ public class User {
     private String gender;
     private String email;
     private String status;
+    private String expectedResponse;
 
     public User() {
 
@@ -66,14 +68,23 @@ public class User {
         this.status = status;
     }
 
+    public String getExpectedResponse() {
+        return expectedResponse;
+    }
+
+    public void setExpectedResponse(String expectedResponse) {
+        this.expectedResponse = expectedResponse;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", gender='" + gender + '\'' +
                 ", email='" + email + '\'' +
                 ", status='" + status + '\'' +
+                ", expectedResponse='" + expectedResponse + '\'' +
                 '}';
     }
 
@@ -82,11 +93,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(gender, user.gender) && Objects.equals(email, user.email) && Objects.equals(status, user.status);
+        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(gender, user.gender) && Objects.equals(email, user.email) && Objects.equals(status, user.status) && Objects.equals(expectedResponse, user.expectedResponse);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, gender, email, status);
+        return Objects.hash(id, name, gender, email, status, expectedResponse);
     }
+
 }

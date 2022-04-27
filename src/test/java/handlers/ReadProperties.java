@@ -8,6 +8,9 @@ public class ReadProperties {
 
     private Properties properties;
 
+    /**
+     * Read properties from config.properties and allows for changing parameters using terminal
+     */
     public ReadProperties() {
         properties = new Properties();
         try (final InputStream inputStream = ReadProperties.class.getClassLoader().getResourceAsStream("config.properties")){
@@ -17,10 +20,18 @@ public class ReadProperties {
         }
     }
 
+    /**
+     * Gets base uri of the project
+     * @return String baseUri
+     */
     public String getBaseUri() {
         return properties.getProperty("baseUri");
     }
 
+    /**
+     * Gets bearer token
+     * @return String bearerToken
+     */
     public String getBearer() {
         return properties.getProperty("bearer");
     }

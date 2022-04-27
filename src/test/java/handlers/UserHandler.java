@@ -13,6 +13,10 @@ public class UserHandler {
     private ObjectMapper mapper = new ObjectMapper();
     private Scenarios scenarios;
 
+    /**
+     * Reads from scenarios.json file
+     * @return Scenarios pojo
+     */
     private Scenarios readFromJsonFile() {
         try {
             scenarios = mapper.readValue(new File("scenarios.json"), Scenarios.class);
@@ -22,11 +26,23 @@ public class UserHandler {
         return scenarios;
     }
 
+    /**
+     * Returns User pojo matching given scenario
+     * @param scenario
+     * @return User pojo
+     * @throws Error on no given scenario
+     */
     public User getUserByScenario(final String scenario) throws Error {
         scenarios = readFromJsonFile();
         return scenarios.getScenarios().stream().filter(s -> s.getScenario().equals(scenario)).findFirst().get().getUser();
     }
 
+    /**
+     * Reads user and return as string json
+     * @param user
+     * @return String jsonString
+     */
+    @Deprecated
     public String toJson(final User user)  {
         var jsonString = "";
         try {

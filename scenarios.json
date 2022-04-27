@@ -1,24 +1,90 @@
 {
   "scenarios": [
     {
-      "scenario" : "no name user",
+      "scenario": "empty body",
       "user": {
-        "gender": "male",
-        "email": "conan@nodomain.fake.pl",
-        "status": "inactive"
+        "expectedResponse": "[{field=email, message=can't be blank}, {field=name, message=can't be blank}, {field=gender, message=can't be blank}, {field=status, message=can't be blank}]"
       }
     },
     {
-      "scenario" : "valid",
+      "scenario": "no name user",
+      "user": {
+        "gender": "male",
+        "email": "conan@nodomain.fake.pl",
+        "status": "inactive",
+        "expectedResponse": "[{field=name, message=can't be blank}]"
+      }
+    },
+    {
+      "scenario": "no status",
+      "user": {
+        "gender": "male",
+        "email": "conan@nodomain.fake.pl",
+        "expectedResponse": "[{field=name, message=can't be blank}, {field=status, message=can't be blank}]"
+      }
+    },
+    {
+      "scenario": "validate email",
+      "user": {
+        "name": "Jerzy Maruda",
+        "gender": "male",
+        "email": "isthisanemail_noitsnot",
+        "expectedResponse": "[{field=status, message=can't be blank}, {field=email, message=is invalid}]"
+      }
+    },
+    {
+      "scenario": "validate status",
+      "user": {
+        "name": "Jerzy Maruda",
+        "gender": "male",
+        "email": "goodemail@good.good",
+        "status": "status_out_of_enum",
+        "expectedResponse": "[{field=status, message=can't be blank}]"
+      }
+    },
+    {
+      "scenario": "valid user",
       "user": {
         "name": "Conan Valid",
         "gender": "male",
         "email": "conan@nodomain.fake.pl",
-        "status": "inactive"
+        "status": "inactive",
+        "expectedResponse": "name=Conan Valid, email=conan@nodomain.fake.pl, gender=male, status=inactive}"
       }
     },
     {
-      "scenario" : "invalid",
+      "scenario": "duplicated user",
+      "user": {
+        "name": "Conan Valid",
+        "gender": "male",
+        "email": "conan@nodomain.fake.pl",
+        "status": "inactive",
+        "expectedResponse": "[{field=email, message=has already been taken}]"
+      }
+    },
+    {
+      "scenario": "not existing user",
+      "user": {
+        "id": 2121212121,
+        "name": "Conan Valid",
+        "gender": "male",
+        "email": "totallydifferentemail@notexists.domain.fake",
+        "status": "active",
+        "expectedResponse": "{message=Resource not found}"
+      }
+    },
+    {
+      "scenario": "update user",
+      "user": {
+        "name": "Conan Valid",
+        "gender": "male",
+        "email": "totallydifferentemail@notexists.domain.fake",
+        "status": "active",
+        "expectedResponse": "{email=totallydifferentemail@notexists.domain.fake, name=Conan Valid, gender=male, status=active, id="
+      }
+    },
+    {
+      "scenario": "invalid",
       "user": {
         "name": "no name",
         "gender": "no gender",
