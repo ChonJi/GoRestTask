@@ -43,10 +43,8 @@ public class BaseTest {
 
     @AfterAll
     public static void tearDown() {
-            given()
-                    .when()
-                    .delete(usersUrl + capturedId);
-
-
+        given()
+                .when()
+                .delete(usersUrl + capturedId);
     }
 }
