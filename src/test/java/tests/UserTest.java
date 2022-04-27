@@ -34,7 +34,6 @@ public class UserTest extends BaseTest {
     @Order(2)
     public void shouldRespondWithUnprocessableEntityOnNoUserName() {
         User testUser = userHandler.getUserByScenario("no name user");
-        System.out.println(userHandler.toJson(testUser));
         var body = given()
                 .body(userHandler.toJson(testUser))
                 .when()
